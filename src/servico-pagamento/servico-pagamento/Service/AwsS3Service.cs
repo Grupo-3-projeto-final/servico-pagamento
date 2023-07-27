@@ -8,17 +8,15 @@ namespace servico_pagamento.Service
 {
     public class AwsS3Service : IAwsS3Service
     {
-        private readonly string bucketName = "repository-gama-academy";
+        private readonly string bucketName = "storage-pagamento-gama";
         private readonly RegionEndpoint bucketRegion = RegionEndpoint.USEast1; 
         private readonly IAmazonS3 s3Client;
-        private readonly string accessKey;
-        private readonly string secretKey;
+        private readonly IConfiguration _configuration;
 
-        public AwsS3Service(string accessKey, string secretKey)
+        public AwsS3Service(IConfiguration configuration)
         {
-            this.accessKey = accessKey;
-            this.secretKey = secretKey;
-            s3Client = new AmazonS3Client(accessKey, secretKey, bucketRegion);
+            _configuration = configuration;
+            s3Client = new AmazonS3Client(_configuration["AWS_ACCESS_KEY"], _configuration["AWS_SECRET_KEY"], bucketRegion);
         }
 
         public string EnviarPdfParaAwsS3(byte[] pdf, string nomeArquivo)
@@ -31,8 +29,7 @@ namespace servico_pagamento.Service
                     {
                         BucketName = bucketName,
                         InputStream = memoryStream,
-                        Key = nomeArquivo,
-                        //CannedACL = S3CannedACL.PublicRead // Permite que o arquivo seja lido publicamente
+                        Key = nomeArquivo
                     };
 
                     fileTransferUtility.Upload(fileTransferUtilityRequest);

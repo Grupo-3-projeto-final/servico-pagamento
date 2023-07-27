@@ -6,7 +6,7 @@ using servico_pagamento.Service.Interfaces;
 
 namespace servico_pagamento.Controllers
 {
-    [Authorization(Role = "Administrator")]
+    //[Authorization(Role = "Administrator")]
     [Authentication]
     [Route("api/v1/pagamento")]
     [ApiController]

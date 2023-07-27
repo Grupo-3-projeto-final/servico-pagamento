@@ -13,17 +13,15 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 builder.Services.AddLogging();
 
+builder.Configuration.AddEnvironmentVariables(); // Carrega as variáveis de ambiente
+
 // AWS
-var appSettings = builder.Configuration.GetSection("AWSCredentials");
-string accessKey = appSettings["AccessKey"];
-string secretKey = appSettings["SecretKey"];
 
 // Injeção de depedência
 builder.Services.AddScoped<IPagamentoService, PagamentoService>();
-builder.Services.AddScoped<IAwsS3Service>(sp => new AwsS3Service(accessKey, secretKey));
+builder.Services.AddSingleton<IAwsS3Service, AwsS3Service>();
 builder.Services.AddScoped<IHtmlParaPdf, HtmlParaPdf>();
 builder.Services.AddScoped<IBoletoService, BoletoService>();
 builder.Services.AddScoped<IPixService, PixService>();
@@ -32,12 +30,11 @@ builder.Services.AddScoped<IPixService, PixService>();
 // Repositories 
 builder.Services.AddScoped<IPagamentoRepository, PagamentoRepository>();
 
-
 // Servico Aluno Api
 builder.Services.AddHttpClient<IServicoAlunoApiRepository, ServicoAlunoApiRepository>()
 .ConfigureHttpClient((sp, options) =>
 {
-    options.BaseAddress = new Uri(builder.Configuration.GetSection("ServicoAlunoApiSettings:UrlApi").Value);
+    options.BaseAddress = new Uri(Environment.GetEnvironmentVariable("ServicoAlunoApi"));
 });
 
 
