@@ -8,7 +8,7 @@
                 <body>
                     <div class=""container"">
                         <div class=""header"">
-                            {5}
+                            {6}
                             <div style=""margin-left: 50px; font-weight: bold;"">34191.79001 01043.510047 91020.150008 1 00000000015000</div>
                         </div>
                         <div class=""title"">Boleto Bancário</div>
@@ -53,14 +53,14 @@
                             <div style=""font-weight: bold;"">34191.79001 01043.510047 91020.150008 1 00000000015000</div>
                         </div>
                         <div class=""footer"">
-                            <img src=""https://www.automaclick.com.br/image/Blog/Qual%20o%20Produto%201.png"" style=""max-width: 320px; max-height: 80px; margin-top: 20px;"" alt=""Codigo de Barras"">
+                            <img src=""data:image/ png;base64,{4}"" />
                         </div>
                     </div>
                 </body>
                 <head>
                     <meta charset=""UTF-8"">
                     <title>Boleto Bancário</title>
-                    {4}
+                    {5}
                 </head>
             </html>";
 
