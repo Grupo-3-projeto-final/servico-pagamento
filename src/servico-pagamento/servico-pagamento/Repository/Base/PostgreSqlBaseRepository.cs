@@ -19,8 +19,7 @@ namespace servico_pagamento.Repository.Base
         {
             try
             {
-                //string connectionString = _configuration.GetConnectionString("PostgreSqlDatabase");
-                string connectionString = "Host=localhost; Port=5432; Database=servicopagamento; Username=dbadm; Password=dbadm";
+                string connectionString = _configuration["CONNECTION_POSTGRES"];
                 
                 IDbConnection connection = new NpgsqlConnection(connectionString);
                 if (connection.State == ConnectionState.Closed)
