@@ -5,6 +5,8 @@ using servico_pagamento.Repository.External;
 using servico_pagamento.Repository.Interface;
 using servico_pagamento.Service;
 using servico_pagamento.Service.Interfaces;
+using WkHtmlToPdfDotNet.Contracts;
+using WkHtmlToPdfDotNet;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddLogging();
 
 builder.Configuration.AddEnvironmentVariables(); // Carrega as variáveis de ambiente
+builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 
 // AWS
 
