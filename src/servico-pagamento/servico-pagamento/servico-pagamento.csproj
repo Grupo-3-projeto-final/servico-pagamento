@@ -12,6 +12,7 @@
     <PackageReference Include="BarCode" Version="2023.7.2" />
     <PackageReference Include="Dapper" Version="2.0.143" />
     <PackageReference Include="IronPdf.Linux" Version="2023.7.4" />
+    <PackageReference Include="IronPdf.Native.Chrome.Linux" Version="2023.7.15762" />
     <PackageReference Include="Npgsql" Version="7.0.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
