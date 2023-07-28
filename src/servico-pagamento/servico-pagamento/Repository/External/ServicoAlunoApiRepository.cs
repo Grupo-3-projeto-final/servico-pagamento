@@ -16,7 +16,7 @@ namespace servico_pagamento.Repository.External
 
         public async Task<bool> EnviarStatusPagamento(StatusPagamento statusPagamento)
         {
-            string requestUrl = "atualizar-status";
+            string requestUrl = "pagamentoAluno/atualizar-status";
             string jsonStatusPagamento = JsonSerializer.Serialize(statusPagamento);
 
             using (var httpContent = new StringContent(jsonStatusPagamento, Encoding.UTF8, "application/json"))
